@@ -1,0 +1,30 @@
+{
+  "name": "ng2-filter-bar",
+  "version": "0.1.5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhinavkareer/ng2-filter-bar"
+  },
+  "author": {
+    "name": "Abhinav Kareer",
+    "email": "abhinavkareer@gmail.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhinavkareer/ng2-filter-bar/issues"
+  },
+  "module": "ng2-filter-bar.js",
+  "typings": "ng2-filter-bar.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26"
+  },
+  "dependencies": {
+    
+  }
+}
