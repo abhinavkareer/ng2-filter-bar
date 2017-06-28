@@ -1,4 +1,5 @@
 # ng2-filter-bar
+A simple angular4 plugin that lets you create an advanced searchbar
 
 ## Installation
 
@@ -6,7 +7,10 @@ To install this library, run:
 
 ```bash
 $ npm install ng2-filter-bar --save
+$ npm install --save @ng-bootstrap/ng-bootstrap
+
 ```
+You can check https://ng-bootstrap.github.io/#/getting-started to enable bootsrap
 
 ## Consuming your library
 
@@ -14,18 +18,22 @@ Once you have published your library to npm, you can import your library in any 
 
 ```bash
 $ npm install ng2-filter-bar
+$ npm install --save @ng-bootstrap/ng-bootstrap
 ```
+
+
 
 and then from your Angular `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
-// Import your library
-import { SampleModule } from 'ng2-filter-bar';
+
+import {NgFilterBarModule} from 'ng2-filter-bar'
 
 @NgModule({
   declarations: [
@@ -34,8 +42,7 @@ import { SampleModule } from 'ng2-filter-bar';
   imports: [
     BrowserModule,
 
-    // Specify your library as an import
-    LibraryModule
+   NgFilterBarModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -50,8 +57,14 @@ Once your library is imported, you can use its components, directives and pipes 
 <h1>
   {{title}}
 </h1>
-<sampleComponent></sampleComponent>
+<ng-filter-bar [filtersConfig]="filtersConfig" (onChange)="onFilterUpdate($event)" [allowExternalKeys]="allowExternalKeys"></ng-filter-bar>
 ```
+
+Working Example 
+Clone https://github.com/abhinavkareer/ng2-filter-bar-demo 
+
+
+
 
 ## Development
 

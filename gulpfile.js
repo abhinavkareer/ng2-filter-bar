@@ -12,8 +12,8 @@ const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
 const tmpFolder = path.join(rootFolder, '.tmp');
 const buildFolder = path.join(rootFolder, 'build');
-// const distFolder = path.join(rootFolder, 'dist');
-const distFolder = path.join(rootFolder, '../POCS/testFilter/node_modules/ng2-filter-bar');
+const distFolder = path.join(rootFolder, 'dist');
+// const distFolder = path.join(rootFolder, '../test/ng2-filter-bar-demo/node_modules/ng2-filter-bar');
 
 /**
  * 1. Delete /dist folder

@@ -1,5 +1,6 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
 import {FilterConfig} from './models/filterConfig.model';
+import {NGFilterBarService} from './filter-bar.service';
 
 @Component({
   selector: 'ng-filter-bar',
@@ -60,28 +61,69 @@ import {FilterConfig} from './models/filterConfig.model';
 })
 export class NGFilterBarComponent{
 
-  constructor() {
+  constructor(private filterService:NGFilterBarService) {
+    this.filterService.emitAddFilter.subscribe(item=>this.addFilterItem(item))
   }
 
   
-  @Input() filtersConfig:Array<FilterConfig> ;
+  @Input() filtersConfig:Array<FilterConfig>;
+  @Input() allowExternalKeys:boolean=false;
   selectedFilters:Array<FilterConfig>=[];
+  selectedFiltersKeys:Array<string>=[];
 
 
 
   @Output() onChange=new EventEmitter();
 
+
+  addFilterItem(item:FilterConfig){
+   let keyIndex=this.selectedFiltersKeys.indexOf(item.key);
+   let keyFoundInDropDown=false;
+    if(keyIndex>=0){
+      this.concatToExistingFilter(item,keyIndex);
+    }
+    else{
+      for(let filter of this.filtersConfig){
+        if(filter.key==item.key){
+          filter.value=item.value;
+          this.filterItemClicked(filter);
+          keyFoundInDropDown=true;
+        }
+
+      }
+
+      if(!keyFoundInDropDown && this.allowExternalKeys){
+         this.filterItemClicked(item);
+      }
+
+    }
+   
+    this.emitNewData();
+  }
+
   filterItemClicked(item:FilterConfig){
     item.hidden=true;
     this.selectedFilters.push(item);
+    this.selectedFiltersKeys.push(item.key);
+  }
+
+
+  concatToExistingFilter(item:FilterConfig,index=-1){
+      if(index>=0){
+            this.selectedFilters[index].value+=","+item.value;
+      }
   }
 
   removeFilter(item:FilterConfig){
    let index=this.selectedFilters.indexOf(item);
+   let keyIndex=this.selectedFiltersKeys.indexOf(item.key);
   item.hidden=false;
   item.value="";
     if(index>=0){
       this.selectedFilters.splice( index, 1 );
+    }
+     if(keyIndex>=0){
+      this.selectedFiltersKeys.splice( keyIndex, 1 );
     }
 
     this.emitNewData();
@@ -99,6 +141,8 @@ export class NGFilterBarComponent{
   emitNewData(){
     this.onChange.emit(this.selectedFilters);
     }
+
+
 
 
 

@@ -373,7 +373,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/filter-bar.service.ts:4</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/filter-bar.service.ts:5</a></div>
                                         </td>
                                     </tr>
             
@@ -381,10 +381,74 @@
                     </table>
             </section>
 
+            <section>
+                
+                    <h3 id="methods">
+                        Methods
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> addFilter</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>addFilter(item: any)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/filter-bar.service.ts:14</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
 
+            <section>
+                
+                    <h3 id="inputs">
+                        Properties
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> emitAddFilter</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>emitAddFilter:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/filter-bar.service.ts:12</a></div>
+                                        </td>
+                                    </tr>
+                        </tbody>
+                    </table>
+            </section>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Injectable,EventEmitter } from &#x27;@angular/core&#x27;;
+import { FilterConfig } from &#x27;./models/filterConfig.model&#x27;;
 
 @Injectable()
 export class NGFilterBarService {
@@ -392,6 +456,13 @@ export class NGFilterBarService {
   constructor() {
 
   }
+
+
+  emitAddFilter &#x3D; new EventEmitter&lt;FilterConfig&gt;();
+
+	addFilter(item:FilterConfig){
+		this.emitAddFilter.emit(item);
+	}
 }
 </code></pre>
     </div>
