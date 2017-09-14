@@ -19,9 +19,6 @@ export class FilterConfig implements FilterConfigInterFace {
     this.value = "";
     this.allowMultiple =false;
     this.hidden=false;
-
-    
-   
   }
 
 }

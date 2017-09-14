@@ -139,7 +139,12 @@ export class NGFilterBarComponent{
   }
 
   emitNewData(){
-    this.onChange.emit(this.selectedFilters);
+    let selectedFilters:any=this.selectedFilters;
+    for(let filter of selectedFilters){
+      let value=filter.value.split(",");
+      filter.value=value;
+    }
+    this.onChange.emit(selectedFilters);
     }
 
 
